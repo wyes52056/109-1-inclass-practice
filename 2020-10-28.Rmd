@@ -1,0 +1,187 @@
+---
+title: "課?<a0>?練習模<e7><89><88>"
+author: "???K??"
+date: "2020-10-28"
+output: output_format
+params:
+  id: "410973116"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Your code
+
+```{r}
+object_name
+# 有多少名字可選：
+names(listExample)
+```
+
+```{r}
+listExample$student
+listExample$學期  # 特殊命名依然要用反頓點呼叫
+```
+
+
+```{r}
+listExample[["student"]]
+listExample$student
+
+listExample[["學期"]]  # 小心不是反頓點喔。
+listExample$學期
+```
+
+
+```{r}
+vectorExample
+vectorExample[c(1, 3)]
+```
+
+
+```{r}
+# 顯示到第一層
+str(listExample, max.level = 1)
+
+listExample[c(1, 2)]
+```
+
+
+```{r}
+# 顯示到第一層
+str(listExample, max.level = 1)
+
+listExample[c("學期")]
+listExample[c("student", "學期")]
+```
+
+
+```{r}
+vectorExample
+vectorExample[c(T, T, F)]  # 要，要，不要
+```
+
+```{r}
+str(listExample[c(F, T)])  # 不要，要
+str(listExample[c(T, T)])  # 要，要
+```
+
+
+```{r}
+str(listExample)
+```
+
+```{r}
+get1 <- listExample[["學期"]]
+get2 <- listExample["學期"]
+```
+
+
+```{r}
+get1  # 學期拿出來，有3個元素的list
+str(get1)
+```
+
+
+```{r}
+get2  # listExample 只留下 學期元素，是個只有一個元素的list
+str(get2)
+```
+
+
+```{r}
+numVector <- c(2, 3, 6, -1, 4, 2, 6)
+select1 <- numVector[c(1, 4)]
+select1
+select2 <- select1[[1]]
+select2
+
+# 相當於
+numVector[c(1, 4)][[1]]
+```
+
+```{r}
+select1 <- numVector[c(T, T, F, T, F, F, T)]
+select1
+select2 <- select1[c(1, 4)]
+select2
+
+# 相當於
+numVector[c(T, T, F, T, F, F, T)][c(1, 4)]
+```
+
+```{r}
+majors <- c("經濟學系", "經濟學系", "社會學系", "社工系", "經濟學系")
+names <- c("小英", "小美", "大雄", "阿華", "阿尼")
+gender <- c("F", "F", "M", "F", "M")
+```
+
+```{r}
+today <- list(list("台北市", c(highest_temp = 25), c(lowest_temp = 18)), list("新北市", 
+    c(highest_temp = 24), c(lowest_temp = 15)))
+tomorrow <- list(list("台北市", c(highest_temp = 25), c(lowest_temp = 18)), list("新北市", 
+    c(highest_temp = 24), c(lowest_temp = 15)))
+
+weather <- list(today, tomorrow)
+
+print(weather)
+```
+
+```{r}
+weather[[1]][[2]][[2]]  # 今天/新北市/highest_temp
+weather[[2]][[2]][[2]]  # 明天/新北市/highest_temp
+```
+
+```{r}
+weather[[1]][[2]]$highest_temp  # 今天/新北市/highest_temp
+weather[[2]][[2]]$highest_temp  # 明天/新北市/highest_temp
+```
+
+```{r}
+obj[.] <- value
+obj[[.]] <- value
+obj$. <- value
+```
+
+```{r}
+a <- c("1", "b", "TRUE")
+a
+a[[2]] <- "c"  # 元素存在: 替換
+a[[4]] <- "7"  # 元素不存在： 增加
+a[c(5, 6)] <- c("J", "K")
+a
+```
+
+```{r}
+library(lubridate)
+list1 <- list(list(name = "Jack", birthday = ymd("1998-03-21"), status = c(height = 177, 
+    weight = 80)))
+
+str(list1)
+```
+
+```{r}
+# 更改日期
+list1[[1]]$birthday <- ymd("1997-03-21")
+
+# 新增資料
+list1[[2]] <- list(name = "Mary", birthday = ymd("1998-08-24"))
+
+str(list1)
+```
+
+```{r}
+list1[[1]][["age"]] <- 21
+list1[[2]]["age"] <- list(21)
+
+# 改變「一個」時，使用[[ ]]比較不會錯。
+str(list1)
+```
+
+```{r}
+list1[[1]][c("bloodType", "registered")] <- list("AB", TRUE)
+
+str(list1)
+```
+
